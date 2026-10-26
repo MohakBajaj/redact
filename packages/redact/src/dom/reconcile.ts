@@ -718,11 +718,11 @@ function flushPending(): void {
         flushing = false;
     }
 }
-export function batchedUpdates<T>(fn: () => T): T {
+export function batchedUpdates<A, T>(fn: (a: A) => T, a?: A): T {
     const wasBatching = isBatching;
     isBatching = true;
     try {
-        return fn();
+        return fn(a as A);
     }
     finally {
         isBatching = wasBatching;
