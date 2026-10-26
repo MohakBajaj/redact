@@ -1,4 +1,4 @@
-import { useState, useReducer, useEffect, useLayoutEffect, useInsertionEffect, useRef, useMemo, useCallback, useContext, useImperativeHandle, useDebugValue, useId, useTransition, useDeferredValue, useSyncExternalStore, use, useActionState, useFormStatus, useOptimistic, useEffectEvent, startTransition, unstable_useCacheRefresh, } from './hooks';
+import { useState, useReducer, useEffect, useLayoutEffect, useInsertionEffect, useRef, useMemo, useCallback, useContext, useImperativeHandle, useDebugValue, useId, useTransition, useDeferredValue, useSyncExternalStore, useSyncExternalStoreWithSelector, use, useActionState, useFormStatus, useOptimistic, useEffectEvent, startTransition, unstable_useCacheRefresh, } from './hooks';
 export type { FragmentInstance } from '../dom/fragment-instance';
 export { Children } from './children';
 import { Suspense, StrictMode, Profiler } from './suspense';
@@ -60,6 +60,8 @@ export default {
     useTransition,
     useDeferredValue,
     useSyncExternalStore,
+    // use-sync-external-store/shim/with-selector aliases here; Zustand 4 reads the hook off the default import.
+    useSyncExternalStoreWithSelector,
     use,
     useActionState,
     useFormStatus,

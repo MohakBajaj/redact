@@ -50,3 +50,10 @@ it('supports undefined selections and replacement selector functions', () => {
   expect(container.textContent).toBe('empty')
   root.unmount()
 })
+
+it('is on the default export, which use-sync-external-store/shim/with-selector aliases to', async () => {
+  // Zustand 4: `import useSyncExternalStoreExports from 'use-sync-external-store/shim/with-selector'`
+  // followed by `const { useSyncExternalStoreWithSelector } = useSyncExternalStoreExports`.
+  const React = (await import('react')).default
+  expect(React.useSyncExternalStoreWithSelector).toBe(useSyncExternalStoreWithSelector)
+})
