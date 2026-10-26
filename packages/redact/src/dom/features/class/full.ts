@@ -66,8 +66,9 @@ function renderClass(fiber: Fiber): void {
             instance._u(cb);
         };
         instance._u = (cb?: () => void) => {
+            // Staged until this fiber's next commit, after componentDidUpdate (ref ordering), as in React.
             if (cb)
-                (fiber.e ||= []).push(cb);
+                scheduleLifecycle(fiber, () => cb.call(instance), true);
             scheduleUpdate(fiber);
         };
         if (process.env.NODE_ENV !== 'production') {

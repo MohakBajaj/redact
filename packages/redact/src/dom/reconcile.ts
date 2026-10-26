@@ -161,10 +161,10 @@ function pushChildren(node: ReactNode, out: NormalizedChild[], ids?: bigint[], p
                 pushChildren(item, out);
     }
 }
-export function scheduleLifecycle(fiber: Fiber, fn: () => void): void {
-    if (isActivityHidden(fiber) || layoutIsDisconnected(fiber))
+export function scheduleLifecycle(fiber: Fiber, fn: () => void, ref?: boolean): void {
+    if (fiber.u || isActivityHidden(fiber) || layoutIsDisconnected(fiber))
         return;
-    stageCommit(fiber, fn);
+    stageCommit(fiber, fn, ref);
 }
 // ---------------------------------------------------------------------------
 // Element → children normalization
